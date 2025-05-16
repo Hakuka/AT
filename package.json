@@ -1,0 +1,25 @@
+{
+  "name": "projekt2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/src/index.js",
+    "check-env": "tsc scripts/check-env.ts --outDir dist/scripts && node dist/scripts/check-env.js",
+    "google-e2e-run": "cypress run --config-file=google-e2e/cypress.config.js",
+    "google-e2e-watch": "cypress open --config-file=google-e2e/cypress.config.js",
+    "saucedemo-e2e-run": "cypress run --config-file=saucedemo-e2e/cypress.config.js",
+    "saucedemo-e2e-watch": "cypress open --config-file=saucedemo-e2e/cypress.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/cypress": "^0.1.6",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.15.17",
+    "cypress": "^14.3.3",
+    "typescript": "^5.8.3"
+  }
+}

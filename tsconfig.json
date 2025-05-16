@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist",
+    "types": ["cypress", "mocha"]
+  },
+  "include": [
+    "src/**/*.ts",
+    "scripts/**/*.ts",
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
