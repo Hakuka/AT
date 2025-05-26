@@ -1,10 +1,7 @@
 {
-  "name": "projekt2",
+  "name": "AT",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/src/index.js",
     "check-env": "tsc scripts/check-env.ts --outDir dist/scripts && node dist/scripts/check-env.js",
     "google-e2e-run": "cypress run --config-file=google-e2e/cypress.config.js",
     "google-e2e-watch": "cypress open --config-file=google-e2e/cypress.config.js",

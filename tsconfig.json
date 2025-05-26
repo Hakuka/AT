@@ -7,10 +7,9 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
-    "types": ["cypress", "mocha"]
+    "types": ["cypress", "node"]
   },
   "include": [
-    "src/**/*.ts",
     "scripts/**/*.ts",
   ],
   "exclude": [
