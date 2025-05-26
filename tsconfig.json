@@ -11,7 +11,7 @@
   "include": [
     "scripts/**/*.ts",
     "saucedemo-e2e/cypress/**/*.ts",
-    "saucedemo-e2e/src/**/*.ts"
+    "saucedemo-e2e/e2e/**/*.ts"
   ],
   "exclude": [
     "node_modules"

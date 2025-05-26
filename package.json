@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "scripts": {
     "check-env": "tsc scripts/check-env.ts --outDir dist/scripts && node dist/scripts/check-env.js",
-    "google-e2e-run": "cypress run --config-file=google-e2e/cypress.config.js",
-    "google-e2e-watch": "cypress open --config-file=google-e2e/cypress.config.js",
-    "saucedemo-e2e-run": "cypress run --config-file=saucedemo-e2e/cypress.config.js",
-    "saucedemo-e2e-watch": "cypress open --config-file=saucedemo-e2e/cypress.config.js"
+    "google-clean": "powershell -Command \"Remove-Item -Recurse -Force google-e2e/screenshots, google-e2e/videos\"",
+    "google-run": "cypress run --config-file=google-e2e/cypress.config.js",
+    "google-watch": "cypress open --config-file=google-e2e/cypress.config.js",
+    "saucedemo-clean": "powershell -Command \"Remove-Item -Recurse -Force saucedemo-e2e/screenshots, saucedemo-e2e/videos\"",
+    "saucedemo-run": "cypress run --config-file=saucedemo-e2e/cypress.config.js",
+    "saucedemo-watch": "cypress open --config-file=saucedemo-e2e/cypress.config.js"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +16,7 @@
   "description": "",
   "devDependencies": {
     "@types/node": "^22.15.17",
-    "cypress": "^14.3.3",
+    "cypress": "^14.4.0",
     "typescript": "^5.8.3"
   }
 }
