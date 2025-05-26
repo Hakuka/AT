@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -11,6 +10,8 @@
   },
   "include": [
     "scripts/**/*.ts",
+    "saucedemo-e2e/cypress/**/*.ts",
+    "saucedemo-e2e/src/**/*.ts"
   ],
   "exclude": [
     "node_modules"

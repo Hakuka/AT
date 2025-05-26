@@ -1,18 +1,26 @@
 {
-  "standard_user":{
+  "standard_user": {
     "username": "standard_user",
     "password": "secret_sauce"
   },
-  "standard_user_wrong_pass":{
+  "standard_user_wrong_pass": {
     "username": "standard_user",
     "password": "secret_sauce2"
   },
-    "standard_user_wrong_name":{
+  "standard_user_wrong_name": {
     "username": "standard_user2",
     "password": "secret_sauce"
   },
-  "locked_out_user":{
+  "locked_out_user": {
     "username": "locked_out_user",
+    "password": "secret_sauce"
+  },
+  "problem_user": {
+    "username": "problem_user",
+    "password": "secret_sauce"
+  },
+  "visual_user": {
+    "username": "visual_user",
     "password": "secret_sauce"
   }
 }

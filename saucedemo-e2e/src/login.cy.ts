@@ -1,10 +1,10 @@
-import { Login } from '../../cypress/support/login.po';
+import { Login } from '../cypress/support/login.po';
 
-describe('Check login', () => {
+describe('Check the user login to the application', () => {
   const login = new Login();
 
   beforeEach(() => {
-    cy.viewport(1920, 1080); //przy dodawaniu mobilnej wersji wyniesc w gore
+    cy.viewport(1920, 1080); //if mobile view test added - move to the top
     cy.visit('/');
     cy.title().should('include', 'Swag Labs');
   });

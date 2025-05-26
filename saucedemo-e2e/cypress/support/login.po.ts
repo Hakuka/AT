@@ -7,7 +7,7 @@ const E = {
 };
 
 export class Login {
-  loginToWebsite(userKey) {
+  loginToWebsite(userKey: string) {
     cy.fixture('users.json').then((data) => {
       const user = data[userKey];
       cy.get('.login_wrapper #login_button_container .login-box .form_group [data-test="username"]').type(
@@ -21,6 +21,7 @@ export class Login {
     cy.get('#page_wrapper #contents_wrapper #header_container .header_secondary_container [data-test="title"]')
       .should('be.visible')
       .should('contain', 'Products');
+    cy.url().should('include', '/inventory.html');
   }
   wrongLoginOrPassword() {
     cy.get('[data-test="error"]')

@@ -16,3 +16,7 @@ npm run google-e2e-run <br>
 npm run google-e2e-watch <br>
 npm run saucedemo-e2e-run <br>
 npm run saucedemo-e2e-watch <br>
+
+# Scenarios
+
+Information about tests added in test-cases file.

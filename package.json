@@ -1,5 +1,5 @@
 {
-  "name": "AT",
+  "name": "projekt2",
   "version": "1.0.0",
   "scripts": {
     "check-env": "tsc scripts/check-env.ts --outDir dist/scripts && node dist/scripts/check-env.js",
@@ -13,8 +13,6 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@types/cypress": "^0.1.6",
-    "@types/mocha": "^10.0.10",
     "@types/node": "^22.15.17",
     "cypress": "^14.3.3",
     "typescript": "^5.8.3"

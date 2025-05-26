@@ -2,7 +2,7 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   e2e: {
-    specPattern: "saucedemo-e2e/src/e2e/**/*.cy.{js,jsx,ts,tsx}",
+    specPattern: "saucedemo-e2e/src/**/*.cy.{js,jsx,ts,tsx}",
     supportFile: 'saucedemo-e2e/cypress/support/e2e.js',
     fixturesFolder: 'saucedemo-e2e/cypress/fixtures',
     downloadFolder: 'saucedemo-e2e/cypress/downloads',
