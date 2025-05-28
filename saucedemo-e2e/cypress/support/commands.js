@@ -23,3 +23,12 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('resetAppState', () => {
+  cy.clearCookies();
+  cy.clearLocalStorage();
+  cy.window().then((win) => win.sessionStorage.clear());
+
+  // Odwiedź stronę główną, żeby przepalić DOM (ważne w GUI!)
+  cy.visit('/');
+});

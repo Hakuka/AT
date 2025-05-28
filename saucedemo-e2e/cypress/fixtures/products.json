@@ -1,0 +1,10 @@
+{
+    "product_to_buy_1": {
+        "name": "Sauce Labs Backpack",
+        "price": 29.99
+    },
+    "product_to_buy_2": {
+        "name": "Sauce Labs Fleece Jacket",
+        "price": 49.99
+    }
+}

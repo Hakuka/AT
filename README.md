@@ -20,3 +20,7 @@ npm run saucedemo-e2e-watch <br>
 # Scenarios
 
 Information about tests added in test-cases file.
+
+# Note
+
+Not everywhere data-test selector was used just to learn and test a little bit more...

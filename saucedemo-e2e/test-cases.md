@@ -15,17 +15,17 @@ Verify that the product list is displayed correctly based on the following crite
 - Each product has a unique photo and name
 - Each product has a price
 
-### scenario-1
+### scenario-1 - purchase-happy-path
 
 Basic scenario for buying product:
 
 1. Login to app as standard user.
 2. Add Sauce Labs Backpack and Sauce Labs Fleece Jacket to the cart.
-3. Verify that cart has correct items added with correct price and quantity.
+3. Verify that cart has correct items added with correct quantity.
 4. Go to the checkout.
-5. Enter first name, last name, zip/postal code.
-6. Verify total price if it's correct.
-7. Finish order and go back to the home page.
+5. Enter first name, last name, zip/postal code and go to the checkout overview.
+6. Verify added items and total price if it's correct.
+7. Finish order and go back to the products page.
 
 Note:
 

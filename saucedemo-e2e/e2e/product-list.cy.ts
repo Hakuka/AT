@@ -2,13 +2,16 @@ import { Login } from '../cypress/support/login.po';
 import { ProductList } from '../cypress/support/product-list.po';
 
 ['standard_user', 'problem_user'].forEach((username) => {
-  describe(`Verify product view for user: ${username}`, () => {
+  describe(`Verify product view for user: ${username}`, { testIsolation: false }, () => {
     const login = new Login();
     const productList = new ProductList();
 
-    beforeEach(() => {
+    it('Preconditions', () => {
       cy.viewport(1920, 1080);
       cy.visit('/');
+    });
+
+    it('Login to the application', () => {
       cy.title().should('include', 'Swag Labs');
       login.loginToWebsite(username);
       login.loginOk();
