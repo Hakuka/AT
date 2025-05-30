@@ -1,7 +1,9 @@
+import { AddingRemovingCart } from '../cypress/support/adding-removing-cart.po';
 import { Login } from '../cypress/support/login.po';
 import { PurchaseHappyPath } from '../cypress/support/purchase-happy-path.po';
 const login = new Login();
 const purchaseHappyPath = new PurchaseHappyPath();
+const addingRemovingCart = new AddingRemovingCart();
 
 describe('Scenario with buying producsts - basic happy path', { testIsolation: false }, () => {
   beforeEach(() => {
@@ -19,37 +21,39 @@ describe('Scenario with buying producsts - basic happy path', { testIsolation: f
     purchaseHappyPath.addProduct('product_to_buy_2');
   });
 
-  it('2.5 - Navigate to the cart', () => {
+  it('3 - Remove Sauce Labs Backpack.', () => {
+    addingRemovingCart.removeProducts('product_to_remove_1');
+  });
+
+  it('3.5 - Navigate to the cart', () => {
     cy.get('[data-test="shopping-cart-link"]').should('be.visible').click();
   });
 
-  it('3 - Verify items added to the cart and their quantity', () => {
-    purchaseHappyPath.verifyItemsToBuy('product_to_buy_1');
+  it('4 - Verify items added to the cart and their quantity', () => {
     purchaseHappyPath.verifyItemsToBuy('product_to_buy_2');
+    purchaseHappyPath.verifyNumberOfItems(1);
   });
 
-  it('4 - Navigate to the checkout', () => {
-    cy.get('[data-test="checkout"]').should('be.visible').click();
+  it('5 - Remove Sauce Labs Fleece Jacket', () => {
+    cy.get('[data-test="remove-sauce-labs-fleece-jacket"]').should('be.visible').click();
   });
 
-  it('5 - Enter checkout information', () => {
-    purchaseHappyPath.enterCheckoutInformation('client_1');
+  it('6 - Remove Sauce Labs Fleece Jacket', () => {
+    cy.get('[data-test="continue-shopping"]').should('be.visible').click();
   });
 
-  it('5.5 - Navigate to the checkout overview', () => {
-    cy.get('.checkout_buttons #continue').should('be.visible').click();
+  it('7 - Add products to the cart', () => {
+    purchaseHappyPath.addProduct('product_to_buy_1');
+    purchaseHappyPath.addProduct('product_to_buy_2');
   });
 
-  it('6 - Verify data in the checkout overview', () => {
+  it('7.5 - Navigate to the cart', () => {
+    cy.get('[data-test="shopping-cart-link"]').should('be.visible').click();
+  });
+
+  it('8 - Verify items added to the cart and their quantity', () => {
     purchaseHappyPath.verifyItemsToBuy('product_to_buy_1');
     purchaseHappyPath.verifyItemsToBuy('product_to_buy_2');
     purchaseHappyPath.verifyNumberOfItems(2);
-    purchaseHappyPath.verifyPriceTotal(['product_to_buy_1', 'product_to_buy_2']);
-  });
-
-  it('7 - Finish order and go to products page', () => {
-    cy.get('[data-test="finish"]').should('be.visible').click();
-    cy.get('[data-test="back-to-products"]').should('be.visible').click();
-    login.loginOk(); //could be changes to products page displayed and moved to commons...
   });
 });

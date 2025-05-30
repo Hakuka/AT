@@ -18,6 +18,10 @@ export class PurchaseHappyPath {
       cy.contains('.cart_item', name).find('.cart_quantity').should('have.text', '1');
     });
   }
+
+  verifyNumberOfItems(itemNumber: number) {
+    cy.get('[data-test="cart-list"]').find('[data-test="inventory-item"]').should('have.length', itemNumber);
+  }
   enterCheckoutInformation(clientKey: string) {
     cy.fixture('clients.json').then((data) => {
       const { first_name, last_name, zip_postal_code } = data[clientKey];
