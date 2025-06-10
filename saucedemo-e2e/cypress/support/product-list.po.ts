@@ -22,4 +22,15 @@ export class ProductList {
         .should('match', /\$\s*\d/);
     });
   }
+
+  selectSorting() {
+    cy.fixture('sortingTypes.json').then((data) => {
+      const keys: string[] = Object.keys(data);
+      for (const key of keys) {
+        const option = data[key];
+        cy.get('[data-test="product-sort-container"]').select(option.text);
+        cy.get('[data-test="product-sort-container"]').should('have.value', option.value);
+      }
+    });
+  }
 }

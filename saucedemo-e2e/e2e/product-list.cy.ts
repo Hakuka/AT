@@ -6,12 +6,12 @@ import { ProductList } from '../cypress/support/product-list.po';
     const login = new Login();
     const productList = new ProductList();
 
-    it('Preconditions', () => {
+    beforeEach(() => {
       cy.viewport(1920, 1080);
-      cy.visit('/');
     });
 
     it('Login to the application', () => {
+      cy.visit('/');
       cy.title().should('include', 'Swag Labs');
       login.loginToWebsite(username);
       login.loginOk();
@@ -27,6 +27,10 @@ import { ProductList } from '../cypress/support/product-list.po';
 
     it('Verifies that price is not empty', () => {
       productList.priceNotEmpty();
+    });
+
+    it('Verifies sorting options', () => {
+      productList.selectSorting();
     });
   });
 });

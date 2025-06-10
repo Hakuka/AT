@@ -1,0 +1,18 @@
+{
+    "nameAscending": {
+        "text": "Name (A to Z)",
+        "value": "az"
+    },
+    "nameDescending": {
+        "text": "Name (Z to A)",
+        "value": "za"
+    },
+    "priceAscending": {
+        "text": "Price (low to high)",
+        "value": "lohi"
+    },
+    "priceDescending": {
+        "text": "Price (high to low)",
+        "value": "hilo"
+    }
+}

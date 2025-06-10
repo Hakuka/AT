@@ -15,6 +15,8 @@ Verify that the product list is displayed correctly based on the following crite
 - Each product has a unique photo and name
 - Each product has a price
 
+Verify that product list have option to sort products (with correct options). TODO: sprawdzic
+
 ### scenario-1 - purchase-happy-path
 
 Basic scenario for buying products:
@@ -43,6 +45,6 @@ Basic scenario for buying products:
 Note:
 
 - Item and prices should be stored in fixtures for possible change in the future.
-- First name, last name and zip/postal code should be randomizes every time to avoid burning out tests.
-- One of existing tests WILL NOT pass because there he catch problems (user with errors)
-- Tests could be reorganized to have support files per specific site, since they are used in multiple test cases.
+- First name, last name and zip/postal code should be randomizes every time to avoid burning out tests (now they are not).
+- One of existing tests WILL NOT pass because there is problem - it's OK (user with errors)
+- Tests could be reorganized to support files per specific site, since they are used in multiple test cases.
