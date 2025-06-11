@@ -15,7 +15,7 @@ Verify that the product list is displayed correctly based on the following crite
 - Each product has a unique photo and name
 - Each product has a price
 
-Verify that product list have option to sort products (with correct options). TODO: sprawdzic
+Verify that product list have option to sort products with correct options.
 
 ### scenario-1 - purchase-happy-path
 
@@ -47,4 +47,5 @@ Note:
 - Item and prices should be stored in fixtures for possible change in the future.
 - First name, last name and zip/postal code should be randomizes every time to avoid burning out tests (now they are not).
 - One of existing tests WILL NOT pass because there is problem - it's OK (user with errors)
-- Tests could be reorganized to support files per specific site, since they are used in multiple test cases.
+- Tests could be reorganized to support files per specific site, since they are used in multiple test cases. Right now methods are added to the files supporting specific scenario.
+- Product-list probably need refactoring to simplify code, few ideas/tests added and some part could be rewriten to use the same method.
