@@ -1,6 +1,6 @@
 ### login
 
-Verify that the user can log in to the application. Four cases are tested:
+Verify that the user can login to the application. Four cases are tested:
 
 - Standard user (correct username and password) – login successful
 - Standard user (correct username and incorrect password) – login denied
@@ -44,8 +44,8 @@ Basic scenario for buying products:
 
 Note:
 
-- Item and prices should be stored in fixtures for possible change in the future.
+- Item and prices should be stored in fixtures for easy change in the future.
 - First name, last name and zip/postal code should be randomizes every time to avoid burning out tests (now they are not).
 - One of existing tests WILL NOT pass because there is problem - it's OK (user with errors)
-- Tests could be reorganized to support files per specific site, since they are used in multiple test cases. Right now methods are added to the files supporting specific scenario.
+- Tests could (should imo) be reorganized to "support files per specific site" (POM?), since they are used in multiple test cases. Right now methods are added to the files supporting specific scenario.
 - Product-list probably need refactoring to simplify code, few ideas/tests added and some part could be rewriten to use the same method.
