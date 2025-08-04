@@ -12,7 +12,7 @@ Verify that the user can login to the application. Four cases are tested:
 
 | Lp. | Step description| Expected result|
 | --- | --- | --- |
-| 0.  | Preconditions: <br>- User U1 with known login (e.g., "UserJohn"), password (e.g., "SuperPass") and access to website (user is not banned, doesn't have restriceted access etc.) exist. <br>- User U2 with known login (e.g., "UserLocked"), password (e.g., "LockPass") and locked access to system exist. | Preconditions are met.|
+| 0.  | Preconditions: <br>- User U1 with known login (e.g., "UserJohn"), password (e.g., "SuperPass") and access to website (user is not banned, doesn't have restricted access etc.) exist. <br>- User U2 with known login (e.g., "UserLocked"), password (e.g., "LockPass") and locked access to system exist. | Preconditions are met.|
 | 1.  | Open login page and enter correct username and password for user U1.| Username and password are entered, password is displayed as string of "\*" instead of visible characters.                                 |
 | 2.  | Press "Login" button.| User is correctly logged to the system. Inventory view is displayed.|
 | 3.  | Press menu button (located in the top-left corner).| Menu with "Logout" option is displayed.|
@@ -49,6 +49,27 @@ Basic scenario for buying products:
 5. Enter first name, last name, zip/postal code and go to the checkout overview.
 6. Verify added items and total price if it's correct.
 7. Finish order and go back to the products page.
+
+<details>
+  <summary>Test case for purchase-happy-path scenario</summary>
+
+| Lp. | Step description| Expected result|
+| --- | --- | --- |
+|0.| Preconditions: <br>- User U1 with known login (e.g., "UserJohn"), password (e.g., "SuperPass") and access to website (user is not banned, doesn't have restricted access etc.) exist. <br> - Two items are added to the system ("Sauce Labs Backpack" and "Sauce Labs Fleece Jacket") and are available to buy with known prices (for example corresponding prices 29.99 and 49.99)| Preconditions are met.|
+|1.| Open login page and enter correct username and password for user U1.| Username and password are entered, password is displayed as string of "\*" instead of visible characters.|
+|2.| Press "Login" button.| User is correctly logged to the system. Inventory view is displayed.|
+|3.| Press "Add to cart" for "Sauce Labs Backpack" item| "Sauce Labs Backpack" is added to the cart. Icon indicator with amount of items in cart is displayed (red "1" in top right corner on the cart icon).
+|4.| Repeat previous step for "Sauce Labs Fleece Jacket" | Both items are added to the cart. Icon indicator displays "2" this time.
+|5.| Open cart view (cart icon located in top-right corner). | Cart view is displayed.|
+|6.| Verify that both products from previous steps are added correctly with correct prices from preconditions ("Sauce Labs Backpack" - "29.99" and "Sauce Labs Fleece Jacket" - "49.99")| Both added items are correctly displayed|
+|7.| Press "Checkout" button. | Checkout view is displayed.|
+|8.| Enter checkout data (first name, last name, zip/postal code).| Data is correctly added to the form.|
+|9.| Press "Continue" button. | Checkout: Overview view is displayed.|
+|10.| Verify that all data is displayed correctly: items name, quantity of items, prices, tax, total costs. | All data is displayed correctly.|
+|11.| Press "Finish" button. | Checkout: Complete! view is displayed.|
+|12.| Press "Back Home" button.| Inventory view is displayed correctly. Cart indicator with amount of items added is no longer displayed.|
+
+</details>
 
 ### scenario-2 - adding-removing-cart
 
