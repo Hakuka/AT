@@ -32,8 +32,9 @@ describe('Scenario with buying producsts - basic happy path', { testIsolation: f
     cy.get('[data-test="checkout"]').should('be.visible').click();
   });
 
-  it('5 - Enter checkout information', () => {
+  it('5 - Enter checkout information, verify calues', () => {
     purchaseHappyPath.enterCheckoutInformation('client_1');
+    purchaseHappyPath.verifyCheckoutInformation('client_1');
   });
 
   it('5.5 - Navigate to the checkout overview', () => {
