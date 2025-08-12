@@ -27,8 +27,6 @@ Not everywhere data-test selector was used just to learn and test a little bit m
 
 # TODO
 
-- Add proper test cases to existing scenarios
-- Added negative and edge case tests (empty fields, unexpected input (some kind of fuzz testing?).
+- Added negative and edge case tests (empty fields, unexpected input (some kind of fuzz testing?)).
 - API response mocking (cy.intercept()), server errors.
 - Integrate some kind of test reporting tool (generate and store).
-- Find new website for new tests and use POM there

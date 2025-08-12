@@ -1,8 +1,11 @@
-import { Login } from '../cypress/support/login.po';
+import { LoginPage } from '../cypress/support/loginPage.po';
 
 describe('Check the user login to the application', () => {
-  const login = new Login();
-
+  const loginPage = new LoginPage();
+  before(() => {
+    cy.clearCookies();
+    cy.clearLocalStorage();
+  });
   beforeEach(() => {
     cy.viewport(1920, 1080); //if mobile view test added - move to the top
     cy.visit('/');
@@ -10,23 +13,23 @@ describe('Check the user login to the application', () => {
   });
 
   it('Check standard user - login ok', () => {
-    login.loginToWebsite('standard_user');
-    login.loginOk();
-    login.logout();
+    loginPage.loginToWebsite('standard_user');
+    loginPage.loginOk();
+    loginPage.logout();
   });
 
   it('Check standard user - wrong password', () => {
-    login.loginToWebsite('standard_user_wrong_pass');
-    login.wrongLoginOrPassword();
+    loginPage.loginToWebsite('standard_user_wrong_pass');
+    loginPage.wrongLoginOrPassword();
   });
 
   it('Check standard user - wrong name', () => {
-    login.loginToWebsite('standard_user_wrong_name');
-    login.wrongLoginOrPassword();
+    loginPage.loginToWebsite('standard_user_wrong_name');
+    loginPage.wrongLoginOrPassword();
   });
 
   it('Check locked out user', () => {
-    login.loginToWebsite('locked_out_user');
-    login.userLocked();
+    loginPage.loginToWebsite('locked_out_user');
+    loginPage.userLocked();
   });
 });

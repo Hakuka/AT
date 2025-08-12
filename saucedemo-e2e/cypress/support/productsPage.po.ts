@@ -5,7 +5,7 @@ import {
   isSortedPriceDescending,
 } from '../utils/sorting';
 
-export class ProductList {
+export class ProductsPage {
   uniqueItemNamesOnProductList() {
     cy.get('#page_wrapper #inventory_container .inventory_list .inventory_item_name').then(($items) => {
       const names = [...$items].map((item) => item.textContent?.trim()); //jQuery to JS
@@ -75,5 +75,21 @@ export class ProductList {
         });
         break;
     }
+  }
+  addProduct(nameKey: string) {
+    cy.fixture('products.json').then((data) => {
+      const name = data[nameKey].name;
+      cy.contains('.inventory_list .inventory_item', name)
+        .contains('button', 'Add to cart')
+        .should('be.visible')
+        .click();
+    });
+  }
+
+  removeProducts(nameKey: string) {
+    cy.fixture('products.json').then((data) => {
+      const name = data[nameKey].name;
+      cy.contains('.inventory_list .inventory_item', name).contains('button', 'Remove').should('be.visible').click();
+    });
   }
 }

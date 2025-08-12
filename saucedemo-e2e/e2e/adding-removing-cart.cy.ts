@@ -1,28 +1,33 @@
-import { AddingRemovingCart } from '../cypress/support/adding-removing-cart.po';
-import { Login } from '../cypress/support/login.po';
-import { PurchaseHappyPath } from '../cypress/support/purchase-happy-path.po';
-const login = new Login();
-const purchaseHappyPath = new PurchaseHappyPath();
-const addingRemovingCart = new AddingRemovingCart();
+import { LoginPage } from '../cypress/support/loginPage.po';
+import { ProductsPage } from '../cypress/support/productsPage.po';
+import { YourCartPage } from '../cypress/support/yourCartPage.po';
+
+const loginPage = new LoginPage();
+const productsPage = new ProductsPage();
+const yourCartPage = new YourCartPage();
 
 describe('Scenario with buying producsts - basic happy path', { testIsolation: false }, () => {
+  before(() => {
+    cy.clearCookies();
+    cy.clearLocalStorage();
+  });
   beforeEach(() => {
     cy.viewport(1920, 1080); //if mobile view test added - move to the top
   });
 
   it('1 - Login to app', () => {
     cy.visit('/');
-    login.loginToWebsite('standard_user');
-    login.loginOk();
+    loginPage.loginToWebsite('standard_user');
+    loginPage.loginOk();
   });
 
   it('2 - Add products to the cart', () => {
-    purchaseHappyPath.addProduct('product_to_buy_1');
-    purchaseHappyPath.addProduct('product_to_buy_2');
+    productsPage.addProduct('product_to_buy_1');
+    productsPage.addProduct('product_to_buy_2');
   });
 
   it('3 - Remove Sauce Labs Backpack.', () => {
-    addingRemovingCart.removeProducts('product_to_remove_1');
+    productsPage.removeProducts('product_to_remove_1');
   });
 
   it('3.5 - Navigate to the cart', () => {
@@ -30,8 +35,8 @@ describe('Scenario with buying producsts - basic happy path', { testIsolation: f
   });
 
   it('4 - Verify items added to the cart and their quantity', () => {
-    purchaseHappyPath.verifyItemsToBuy('product_to_buy_2');
-    purchaseHappyPath.verifyNumberOfItems(1);
+    yourCartPage.verifyItemToBuy('product_to_buy_2');
+    yourCartPage.verifyNumberOfItems(1);
   });
 
   it('5 - Remove Sauce Labs Fleece Jacket', () => {
@@ -43,8 +48,8 @@ describe('Scenario with buying producsts - basic happy path', { testIsolation: f
   });
 
   it('7 - Add products to the cart', () => {
-    purchaseHappyPath.addProduct('product_to_buy_1');
-    purchaseHappyPath.addProduct('product_to_buy_2');
+    productsPage.addProduct('product_to_buy_1');
+    productsPage.addProduct('product_to_buy_2');
   });
 
   it('7.5 - Navigate to the cart', () => {
@@ -52,8 +57,8 @@ describe('Scenario with buying producsts - basic happy path', { testIsolation: f
   });
 
   it('8 - Verify items added to the cart and their quantity', () => {
-    purchaseHappyPath.verifyItemsToBuy('product_to_buy_1');
-    purchaseHappyPath.verifyItemsToBuy('product_to_buy_2');
-    purchaseHappyPath.verifyNumberOfItems(2);
+    yourCartPage.verifyItemToBuy('product_to_buy_1');
+    yourCartPage.verifyItemToBuy('product_to_buy_2');
+    yourCartPage.verifyNumberOfItems(2);
   });
 });

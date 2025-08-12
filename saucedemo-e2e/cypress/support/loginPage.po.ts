@@ -6,7 +6,7 @@ const E = {
     '#root #header_container .primary_header #menu_button_container .bm-menu-wrap .bm-menu .bm-item-list [data-test="logout-sidebar-link"]',
 };
 
-export class Login {
+export class LoginPage {
   loginToWebsite(userKey: string) {
     cy.fixture('users.json').then((data) => {
       const user = data[userKey];
