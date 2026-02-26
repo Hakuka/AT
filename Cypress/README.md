@@ -1,9 +1,4 @@
-# AT
-
-Simple project for learning AT  
-![Cypress](https://img.shields.io/badge/Cypress-04C38E) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6)
-
-## Install
+# Install
 
 npm install
 

@@ -1,0 +1,15 @@
+{
+  "name": "playwright",
+  "version": "1.0.0",
+  "description": "Simple project for learning AT  \r ![Playwright](https://img.shields.io/badge/Playwright-green) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6)",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.3.1",
+    "typescript": "^5.9.3"
+  }
+}
