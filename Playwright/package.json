@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "Simple project for learning AT  \r ![Playwright](https://img.shields.io/badge/Playwright-green) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6)",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test-run": "playwright test",
+    "test-ui": "playwright test --headed",
+    "test-run:practice": "playwright test --project=pw-practice"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
