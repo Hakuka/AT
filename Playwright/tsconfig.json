@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "types": ["node", "@playwright/test"],
+    "moduleResolution": "Node"
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"]
+}

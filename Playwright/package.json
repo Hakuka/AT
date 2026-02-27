@@ -4,16 +4,17 @@
   "description": "Simple project for learning AT  \r ![Playwright](https://img.shields.io/badge/Playwright-green) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6)",
   "main": "index.js",
   "scripts": {
-    "test-run": "playwright test",
-    "test-ui": "playwright test --headed",
-    "test-run:practice": "playwright test --project=pw-practice"
+    "test-all-run": "playwright test",
+    "test-all-watch": "playwright test --headed",
+    "test-all-ui": "playwright test --ui",
+    "test-pwpractice-run": "playwright test --project=pw-practice"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.58.2",
-    "@types/node": "^25.3.1",
+    "@types/node": "^25.3.2",
     "typescript": "^5.9.3"
   }
 }
