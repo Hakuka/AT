@@ -1,0 +1,87 @@
+// IMPORTANT
+// This test is neither optimized nor always valid nor test anything... It serves only as a practice exercise to refresh basic syntax and functions.
+import { expect, test } from '@playwright/test';
+
+test.beforeEach(async ({ page }) => {
+  await page.goto('http://localhost:4200/');
+});
+
+test.describe('Form layouts page', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.getByText('Forms').click();
+    await page.getByText('Form Layouts').click();
+  });
+
+  test('Input fields', async ({ page }) => {
+    const usingTheGridEmailInput = page.locator('nb-card', { hasText: 'Using the Grid' }).getByRole('textbox', { name: 'email' });
+
+    await usingTheGridEmailInput.fill('test@test.com');
+    await usingTheGridEmailInput.clear();
+    await usingTheGridEmailInput.pressSequentially('test2@test.com');
+    await usingTheGridEmailInput.clear();
+    await usingTheGridEmailInput.pressSequentially('test3@test.com', { delay: 500 });
+
+    const inputValue = await usingTheGridEmailInput.inputValue();
+    expect(inputValue).toEqual('test3@test.com');
+
+    await expect(usingTheGridEmailInput).toHaveValue('test3@test.com');
+  });
+
+  test('Radio buttons', async ({ page }) => {
+    const usingTheGridForm = page.locator('nb-card', { hasText: 'Using the Grid' });
+
+    await usingTheGridForm.getByLabel('Option 1').check({ force: true });
+    await usingTheGridForm.getByRole('radio', { name: 'Option 2' }).check({ force: true });
+
+    const radioStatus = await usingTheGridForm.getByRole('radio', { name: 'Option 2' }).isChecked();
+    expect(radioStatus).toBeTruthy();
+
+    await expect(usingTheGridForm.getByRole('radio', { name: 'Option 2' })).toBeChecked();
+    expect(await usingTheGridForm.getByRole('radio', { name: 'Option 1' }).isChecked()).toBeFalsy();
+    expect(await usingTheGridForm.getByRole('radio', { name: 'Option 2' }).isChecked()).toBeTruthy();
+  });
+});
+
+test.describe('Toastr page', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.getByText('Modal & Overlays').click();
+    await page.getByText('Toastr').click();
+  });
+
+  test('Checkboxes', async ({ page }) => {
+    await page.getByRole('checkbox', { name: 'Hide on click' }).uncheck({ force: true });
+    await page.getByRole('checkbox', { name: 'Prevent arising of duplicate toast' }).check({ force: true });
+
+    const allBoxes = page.getByRole('checkbox');
+    for (const box of await allBoxes.all()) {
+      await box.check({ force: true });
+      expect(await box.isChecked()).toBeTruthy();
+    }
+  });
+});
+
+test.only('Lists and dropdowns', async ({ page }) => {
+  const dropDownMenu = page.locator('ngx-header nb-select');
+  await dropDownMenu.click();
+
+  const optionList = page.locator('nb-option-list nb-option');
+  await expect(optionList).toHaveText(['Light', 'Dark', 'Cosmic', 'Corporate']);
+
+  await optionList.filter({ hasText: 'Cosmic' }).click();
+  const header = page.locator('nb-layout-header');
+  await expect(header).toHaveCSS('background-color', 'rgb(50, 50, 89)');
+
+  const colors = {
+    Light: 'rgb(255, 255, 255)',
+    Dark: 'rgb(34, 43, 69)',
+    Cosmic: 'rgb(50, 50, 89)',
+    Corporate: 'rgb(255, 255, 255)',
+  };
+
+  await dropDownMenu.click();
+  for (const color in colors) {
+    await optionList.filter({ hasText: color }).click();
+    await expect(page.locator('nb-layout-header')).toHaveCSS('background-color', colors[color]);
+    if (color != 'Corporate') await dropDownMenu.click();
+  }
+});
