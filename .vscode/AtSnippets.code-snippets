@@ -27,7 +27,7 @@
 	// }
 
   "Playwright new test": {
-    "prefix": "//pwNewTest",
+    "prefix": "/pwNewTest",
     "body": [
       "test('${1:test name}', async ({ page }) => {",
       "  ${2}",
@@ -36,7 +36,7 @@
   },
 
   "Playwright new describe": {
-    "prefix": "//pwNewDescribe",
+    "prefix": "/pwNewDescribe",
     "body": [
       "test.describe('${1:test name}', () => {",
       "  ${2}",

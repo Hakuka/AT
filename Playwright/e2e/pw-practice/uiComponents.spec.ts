@@ -6,7 +6,35 @@ test.beforeEach(async ({ page }) => {
   await page.goto('http://localhost:4200/');
 });
 
-test.describe('Form layouts page', () => {
+test.describe('Main view', () => {
+  test('Lists and dropdowns', async ({ page }) => {
+    const dropDownMenu = page.locator('ngx-header nb-select');
+    await dropDownMenu.click();
+
+    const optionList = page.locator('nb-option-list nb-option');
+    await expect(optionList).toHaveText(['Light', 'Dark', 'Cosmic', 'Corporate']);
+
+    await optionList.filter({ hasText: 'Cosmic' }).click();
+    const header = page.locator('nb-layout-header');
+    await expect(header).toHaveCSS('background-color', 'rgb(50, 50, 89)');
+
+    const colors = {
+      Light: 'rgb(255, 255, 255)',
+      Dark: 'rgb(34, 43, 69)',
+      Cosmic: 'rgb(50, 50, 89)',
+      Corporate: 'rgb(255, 255, 255)',
+    };
+
+    await dropDownMenu.click();
+    for (const color in colors) {
+      await optionList.filter({ hasText: color }).click();
+      await expect(page.locator('nb-layout-header')).toHaveCSS('background-color', colors[color]);
+      if (color != 'Corporate') await dropDownMenu.click();
+    }
+  });
+});
+
+test.describe('Form Layouts page', () => {
   test.beforeEach(async ({ page }) => {
     await page.getByText('Forms').click();
     await page.getByText('Form Layouts').click();
@@ -42,6 +70,49 @@ test.describe('Form layouts page', () => {
   });
 });
 
+test.describe('Smart Table page', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.getByText('Tables & Data').click();
+    await page.getByText('Smart Table').click();
+  });
+
+  test('Browser message ', async ({ page }) => {
+    page.on('dialog', (dialog) => {
+      expect(dialog.message()).toEqual('Are you sure you want to delete?');
+      dialog.accept();
+    });
+
+    await page.getByRole('table').locator('tr', { hasText: 'mdo@gmail.com' }).locator('.nb-trash').click();
+    await expect(page.locator('table tr').first()).not.toHaveText('mdo@gmail.com');
+  });
+
+  test('Web table 1', async ({ page }) => {
+    const targetRow = page.getByRole('row', { name: 'twitter@outlook.com' });
+    await targetRow.locator('.nb-edit').click();
+
+    const targetRowEdit = page.locator('input-editor').getByPlaceholder('Age');
+    await targetRowEdit.clear();
+    await targetRowEdit.fill('35');
+    await page.locator('.nb-checkmark').click();
+
+    const newValue = await targetRow.locator('td').nth(6).textContent();
+    expect(newValue).toEqual('35'); //statyczny uklad kolumn)
+  });
+
+  test('Web table 2', async ({ page }) => {
+    await page.locator('.ng2-smart-pagination-nav').getByText('2').click();
+    const targetRowById = page.getByRole('row', { name: '11' }).filter({ has: page.locator('td').nth(1).getByText('11') });
+    await targetRowById.locator('.nb-edit').click();
+
+    const targetRowEdit = page.locator('input-editor').getByPlaceholder('E-mail');
+    await targetRowEdit.clear();
+    await targetRowEdit.fill('test@test.com');
+    await page.locator('.nb-checkmark').click();
+
+    await expect(targetRowById.locator('td').nth(5)).toHaveText('test@test.com');
+  });
+});
+
 test.describe('Toastr page', () => {
   test.beforeEach(async ({ page }) => {
     await page.getByText('Modal & Overlays').click();
@@ -60,28 +131,17 @@ test.describe('Toastr page', () => {
   });
 });
 
-test.only('Lists and dropdowns', async ({ page }) => {
-  const dropDownMenu = page.locator('ngx-header nb-select');
-  await dropDownMenu.click();
+test.describe('Tooltip page', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.getByText('Modal & Overlays').click();
+    await page.getByText('Tooltip').click();
+  });
 
-  const optionList = page.locator('nb-option-list nb-option');
-  await expect(optionList).toHaveText(['Light', 'Dark', 'Cosmic', 'Corporate']);
+  test('Tooltips', async ({ page }) => {
+    const toolTipCard = page.locator('nb-card', { hasText: 'Tooltip Placements' });
+    await toolTipCard.getByRole('button', { name: 'Top' }).hover();
 
-  await optionList.filter({ hasText: 'Cosmic' }).click();
-  const header = page.locator('nb-layout-header');
-  await expect(header).toHaveCSS('background-color', 'rgb(50, 50, 89)');
-
-  const colors = {
-    Light: 'rgb(255, 255, 255)',
-    Dark: 'rgb(34, 43, 69)',
-    Cosmic: 'rgb(50, 50, 89)',
-    Corporate: 'rgb(255, 255, 255)',
-  };
-
-  await dropDownMenu.click();
-  for (const color in colors) {
-    await optionList.filter({ hasText: color }).click();
-    await expect(page.locator('nb-layout-header')).toHaveCSS('background-color', colors[color]);
-    if (color != 'Corporate') await dropDownMenu.click();
-  }
+    const tooltip = await page.locator('nb-tooltip').textContent();
+    expect(tooltip).toEqual('This is a tooltip');
+  });
 });
