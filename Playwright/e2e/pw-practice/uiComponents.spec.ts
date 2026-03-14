@@ -32,6 +32,33 @@ test.describe('Main view', () => {
       if (color != 'Corporate') await dropDownMenu.click();
     }
   });
+
+  test('Slider', async ({ page }) => {
+    const tempBox = page.locator('[tabtitle="Temperature"] ngx-temperature-dragger');
+
+    //update attribute
+    const tempGauge = page.locator('[tabtitle="Temperature"] ngx-temperature-dragger circle');
+    await tempGauge.evaluate((node) => {
+      node.setAttribute('cx', '17.700');
+      node.setAttribute('cy', '186.946');
+    });
+    await tempGauge.click();
+    await expect(tempBox).toContainText('14');
+    //mouse
+
+    await tempBox.scrollIntoViewIfNeeded();
+
+    const box = await tempBox.boundingBox();
+    const x = box.x + box.width / 2;
+    const y = box.y + box.height / 2;
+    await page.mouse.move(x, y);
+    await page.mouse.down();
+    await page.mouse.move(x + 100, y);
+    await page.mouse.move(x + 100, y + 100);
+    await page.mouse.up();
+
+    await expect(tempBox).toContainText('30');
+  });
 });
 
 test.describe('Form Layouts page', () => {
@@ -86,6 +113,7 @@ test.describe('Smart Table page', () => {
     await expect(page.locator('table tr').first()).not.toHaveText('mdo@gmail.com');
   });
 
+  //get the row by any test in this row
   test('Web table 1', async ({ page }) => {
     const targetRow = page.getByRole('row', { name: 'twitter@outlook.com' });
     await targetRow.locator('.nb-edit').click();
@@ -99,6 +127,7 @@ test.describe('Smart Table page', () => {
     expect(newValue).toEqual('35'); //statyczny uklad kolumn)
   });
 
+  //get the row based on the value in specific column
   test('Web table 2', async ({ page }) => {
     await page.locator('.ng2-smart-pagination-nav').getByText('2').click();
     const targetRowById = page.getByRole('row', { name: '11' }).filter({ has: page.locator('td').nth(1).getByText('11') });
@@ -110,6 +139,28 @@ test.describe('Smart Table page', () => {
     await page.locator('.nb-checkmark').click();
 
     await expect(targetRowById.locator('td').nth(5)).toHaveText('test@test.com');
+  });
+
+  //filter of the table
+  test('Web table 3', async ({ page }) => {
+    const ages = ['20', '30', '40', '200'];
+
+    for (let age of ages) {
+      await page.locator('input-filter').getByPlaceholder('Age').clear();
+      await page.locator('input-filter').getByPlaceholder('Age').fill(age);
+      //if too fast render
+      await page.waitForTimeout(500);
+      const ageRows = page.locator('tbody tr');
+      for (let row of await ageRows.all()) {
+        const cellValue = await row.locator('td').last().textContent();
+
+        if (age == '200') {
+          expect(await page.getByRole('table').textContent()).toContain('No data found');
+        } else {
+          expect(cellValue).toEqual(age);
+        }
+      }
+    }
   });
 });
 
@@ -143,5 +194,35 @@ test.describe('Tooltip page', () => {
 
     const tooltip = await page.locator('nb-tooltip').textContent();
     expect(tooltip).toEqual('This is a tooltip');
+  });
+});
+
+test.describe('Datepicker page', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.getByText('Forms').click();
+    await page.getByText('Datepicker').click();
+  });
+
+  test('Date pick (calendar)', async ({ page }) => {
+    const calendarInputField = page.getByPlaceholder('Form Picker');
+    await calendarInputField.click();
+
+    let date = new Date();
+    date.setDate(date.getDate() + 50);
+    const expectedDay = date.getDate().toString();
+    const expectedMonthShort = date.toLocaleString('En-US', { month: 'short' });
+    const expectedMonthLong = date.toLocaleString('En-US', { month: 'long' });
+    const expectedYear = date.getFullYear();
+    const expectedDate = `${expectedMonthShort} ${expectedDay}, ${expectedYear}`;
+
+    let calendarMonthAndYear = await page.locator('nb-calendar-view-mode').textContent();
+    const expectedMonthAndYear = ` ${expectedMonthLong} ${expectedYear} `;
+    while (!calendarMonthAndYear.includes(expectedMonthAndYear)) {
+      await page.locator('nb-calendar-pageable-navigation [data-name="chevron-right"]').click();
+      calendarMonthAndYear = await page.locator('nb-calendar-view-mode').textContent();
+    }
+
+    await page.locator('nb-calendar-day-cell:not(.bounding-month)').getByText(expectedDay, { exact: true }).click();
+    await expect(calendarInputField).toHaveValue(expectedDate);
   });
 });
