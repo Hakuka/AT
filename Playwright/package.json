@@ -6,7 +6,7 @@
   "scripts": {
     "test-all-run": "playwright test",
     "test-all-watch": "playwright test --headed",
-    "test-all-ui": "playwright test --ui",
+    "test-ui": "playwright test --ui",
     "test-pwpractice-run": "playwright test --project=pw-practice",
     "test-uitestingplayground-run": "playwright test --project=uitestingplayground"
   },

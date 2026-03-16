@@ -27,7 +27,7 @@
 	// }
 
   "Playwright new test": {
-    "prefix": "/pwNewTest",
+    "prefix": "/0pwNewTest",
     "body": [
       "test('${1:test name}', async ({ page }) => {",
       "  ${2}",
@@ -36,12 +36,27 @@
   },
 
   "Playwright new describe": {
-    "prefix": "/pwNewDescribe",
+    "prefix": "/1pwNewDescribe",
     "body": [
       "test.describe('${1:test name}', () => {",
       "  ${2}",
       "});"
     ],
-  }
+  },
 
+  "Playwright new class with page": {
+	"prefix": "/2pwNewClass",
+	"body":[
+		"import { Page } from '@playwright/test';",
+		"",
+		"class ${1:Name} {",
+  			"readonly page: Page;",
+			"",
+			"constructor(page: Page) {",
+    			"this.page = page;",
+  			"}",
+			"}"
+
+	]
+  }
 }
