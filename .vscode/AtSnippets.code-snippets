@@ -42,21 +42,5 @@
       "  ${2}",
       "});"
     ],
-  },
-
-  "Playwright new class with page": {
-	"prefix": "/2pwNewClass",
-	"body":[
-		"import { Page } from '@playwright/test';",
-		"",
-		"class ${1:Name} {",
-  			"readonly page: Page;",
-			"",
-			"constructor(page: Page) {",
-    			"this.page = page;",
-  			"}",
-			"}"
-
-	]
   }
 }

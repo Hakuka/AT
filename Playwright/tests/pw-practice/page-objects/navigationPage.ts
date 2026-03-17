@@ -1,9 +1,9 @@
 import { Locator, Page } from '@playwright/test';
+import { HelperBase } from './helperBase';
 
 //imo it will be too huge in bigger project, and with multiple people there is risk for duplicates with different names...
-//maybe move to constructor after few (3,4?) reuse
-export class NavigationPage {
-  readonly page: Page;
+//maybe move to constructor after few (3,4?) reuse - KISS over DRY
+export class NavigationPage extends HelperBase {
   readonly formLayoutsMenuItem: Locator;
   readonly datepickerMenuItem: Locator;
   readonly smartTableMenuItem: Locator;
@@ -11,7 +11,7 @@ export class NavigationPage {
   readonly tooltipMenuItem: Locator;
 
   constructor(page: Page) {
-    this.page = page;
+    super(page);
     this.formLayoutsMenuItem = page.getByText('Form Layouts');
     this.datepickerMenuItem = page.getByText('Datepicker');
     this.smartTableMenuItem = page.getByText('Smart Table');
@@ -22,6 +22,7 @@ export class NavigationPage {
   async formLayoutsPage() {
     await this.selectGroupMenuItem('Forms');
     await this.formLayoutsMenuItem.click();
+    await this.waitForNumberOfSeconds(2);
   }
 
   async datepickerPage() {
