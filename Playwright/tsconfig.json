@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "types": ["node", "@playwright/test"],
-    "moduleResolution": "Node"
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   },
   "include": ["**/*.ts"],
   "exclude": ["node_modules"]

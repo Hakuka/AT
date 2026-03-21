@@ -44,5 +44,10 @@ export default defineConfig({
       testDir: './tests/uitestingplayground',
       use: { ...devices['Desktop Chrome'] },
     },
+    {
+      name: 'bondaracademysite',
+      testDir: './tests/bondaracademysite',
+      use: { ...devices['Desktop Chrome'] },
+    },
   ],
 });
