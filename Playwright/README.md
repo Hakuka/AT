@@ -4,4 +4,4 @@ npm install
 
 # Note
 
-Tested in following order: pw-practice -> uitestingplayground
+Tested in following order: pw-practice (+bondaracademysite) -> uitestingplayground
