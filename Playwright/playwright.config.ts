@@ -41,6 +41,7 @@ export default defineConfig({
 
   /* Configure projects */
   projects: [
+    { name: 'bondar-academy-site-setup', testMatch: 'bondarAuth.setup.ts' },
     {
       name: 'pw-practice',
       testDir: './tests/pw-practice',
@@ -54,7 +55,9 @@ export default defineConfig({
     {
       name: 'bondaracademysite',
       testDir: './tests/bondaracademysite',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'], storageState: '/Playwright/tests/bondaracademysite/.auth/user.json' },
+      //before chromium run that one
+      dependencies: ['bondar-academy-site-setup'],
     },
   ],
 });

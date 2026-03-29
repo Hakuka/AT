@@ -9,10 +9,6 @@ test.beforeEach(async ({ page }) => {
   });
 
   await page.goto('https://conduit.bondaracademy.com/');
-  await page.getByText('Sign in').click();
-  await page.getByRole('textbox', { name: 'Email' }).fill(process.env.API_BONDARACADEMY_USER_EMAIL);
-  await page.getByRole('textbox', { name: 'Password' }).fill(process.env.API_BONDARACADEMY_USER_PASSWORD);
-  await page.getByRole('button').click();
 });
 
 test('Add article', async ({ page }) => {
