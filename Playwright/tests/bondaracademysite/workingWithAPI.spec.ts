@@ -27,6 +27,9 @@ test('Add article', async ({ page }) => {
   await expect(page.locator('.navbar-brand')).toHaveText('conduit');
   await expect(page.locator('app-article-list h1').first()).toContainText('This is a MOCK test title');
   await expect(page.locator('app-article-list p').first()).toContainText('This is a MOCK description');
+
+  //probably should be handled in other way...
+  await page.unrouteAll({ behavior: 'ignoreErrors' });
 });
 
 test('Delete article', async ({ page, request }) => {
