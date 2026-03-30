@@ -8,12 +8,14 @@
     "test-all-watch": "playwright test --headed",
     "test-ui": "playwright test --ui",
     "test-pwpractice-run": "playwright test --project=pw-practice",
-    "test-uitestingplayground-run": "playwright test --project=uitestingplayground"
+    "test-uitestingplayground-run": "playwright test --project=uitestingplayground",
+    "test-bondaracademysite-run": "playwright test --project=bondaracademysite"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@faker-js/faker": "^10.4.0",
     "@playwright/test": "^1.58.2",
     "@types/node": "^25.3.2",
     "typescript": "^5.9.3"
