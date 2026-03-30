@@ -55,7 +55,13 @@ export default defineConfig({
     {
       name: 'bondaracademysite',
       testDir: './tests/bondaracademysite',
-      use: { ...devices['Desktop Chrome'], storageState: 'tests/bondaracademysite/.auth/user.json' },
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: 'tests/bondaracademysite/.auth/user.json',
+        extraHTTPHeaders: {
+          Authorization: `Token ${process.env.ACCESS_TOKEN}`,
+        },
+      },
       //before chromium run that one
       dependencies: ['bondar-academy-site-setup'],
     },
