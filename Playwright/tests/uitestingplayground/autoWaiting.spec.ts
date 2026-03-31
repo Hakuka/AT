@@ -1,7 +1,8 @@
-import { expect, test } from '@playwright/test';
+import { expect } from '@playwright/test';
+import { test } from '../../test-options';
 
-test.beforeEach(async ({ page }) => {
-  await page.goto('http://www.uitestingplayground.com/ajax');
+test.beforeEach(async ({ page, uiTestingPlaygroundURL }) => {
+  await page.goto(`${uiTestingPlaygroundURL}/ajax`);
   await page.getByText('Button Triggering AJAX Request').click();
 });
 

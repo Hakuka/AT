@@ -1,11 +1,12 @@
-import { test as setup } from '@playwright/test';
 import fs from 'fs';
+import path from 'path';
+import { test as setup } from '../../test-options';
 import user from './.auth/user.json';
 
-const authFile = 'tests/bondaracademysite/.auth/user.json';
+const authFile = path.join('Playwright', 'tests', 'bondaracademysite', '.auth', 'user.json');
 
-setup('authentication', async ({ request }) => {
-  const response = await request.post('https://conduit-api.bondaracademy.com/api/users/login', {
+setup('authentication', async ({ request, bondarApiUrl }) => {
+  const response = await request.post(`${bondarApiUrl}/api/users/login`, {
     data: {
       user: { email: process.env.API_BONDARACADEMY_USER_EMAIL, password: process.env.API_BONDARACADEMY_USER_PASSWORD },
     },
