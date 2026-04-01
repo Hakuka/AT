@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import { test as setup } from '../../test-options';
 import user from './.auth/user.json';
+import { test as setup } from './fixtures/test-options';
 
 const authFile = path.resolve(__dirname, '.auth', 'user.json');
 

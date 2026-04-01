@@ -1,14 +1,13 @@
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
-import { TestOptions } from './test-options';
 
 // dotenv config to read from global level .env
 dotenv.config({
   path: path.resolve(__dirname, '../.env'),
 });
 
-export default defineConfig<TestOptions>({
+export default defineConfig({
   testDir: './tests',
 
   /* Run tests in files in parallel */
@@ -27,7 +26,9 @@ export default defineConfig<TestOptions>({
   reporter: 'html',
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+
   use: {
+    // @ts-expect-error
     bondarApiUrl: 'https://conduit-api.bondaracademy.com',
     bondarPageUrl: 'https://conduit.bondaracademy.com',
     uiTestingPlaygroundURL: 'http://www.uitestingplayground.com',

@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { test } from '../../test-options';
+import { test } from './fixtures/test-options';
 import tags from './test-data/tags.json';
 
 test.beforeEach(async ({ page, bondarPageUrl }) => {

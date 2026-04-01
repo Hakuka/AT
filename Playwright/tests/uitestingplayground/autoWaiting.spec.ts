@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { test } from '../../test-options';
+import { test } from './fixtures/test-options';
 
 test.beforeEach(async ({ page, uiTestingPlaygroundURL }) => {
   await page.goto(`${uiTestingPlaygroundURL}/ajax`);
