@@ -3,7 +3,7 @@ import path from 'path';
 import { test as setup } from '../../test-options';
 import user from './.auth/user.json';
 
-const authFile = path.join('Playwright', 'tests', 'bondaracademysite', '.auth', 'user.json');
+const authFile = path.resolve(__dirname, '.auth', 'user.json');
 
 setup('authentication', async ({ request, bondarApiUrl }) => {
   const response = await request.post(`${bondarApiUrl}/api/users/login`, {
