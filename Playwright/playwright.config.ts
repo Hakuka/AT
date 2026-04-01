@@ -38,20 +38,43 @@ export default defineConfig({
   },
 
   projects: [
+    //project for pw-practice
     {
       name: 'pw-practice',
       testDir: './tests/pw-practice',
       use: { ...devices['Desktop Chrome'] },
     },
 
+    //project for uitestingplayground
     {
       name: 'uitestingplayground',
       testDir: './tests/uitestingplayground',
       use: { ...devices['Desktop Chrome'] },
     },
 
+    // project which prepare access token on bondar academy site
     { name: 'bondar-academy-site-setup', testDir: './tests/bondaracademysite', testMatch: 'bondarAuth.setup.ts' },
 
+    // project which prepare new article on bondar academy site and clear it after test
+    {
+      name: 'bondar-academy-article-setup',
+      testMatch: 'newArticle.setup.ts',
+      dependencies: ['bondar-academy-site-setup'],
+      teardown: 'bondar-academy-article-clean-up',
+    },
+    {
+      name: 'bondar-academy-article-clean-up',
+      testDir: './tests/bondaracademysite',
+      testMatch: 'articleCleanUp.setup.ts',
+      use: {
+        storageState: path.resolve(__dirname, 'tests/bondaracademysite/.auth/user.json'),
+        extraHTTPHeaders: {
+          Authorization: `Token ${process.env.ACCESS_TOKEN}`,
+        },
+      },
+    },
+
+    // project for bondaracademy site
     {
       name: 'bondaracademysite',
       testDir: './tests/bondaracademysite',
@@ -64,6 +87,15 @@ export default defineConfig({
       },
       //before bondaracademysite run that one below
       dependencies: ['bondar-academy-site-setup'],
+    },
+
+    // project for bondaracademy site for like - to test  dependency chain
+    {
+      name: 'bondar-academy-like-counter',
+      testDir: './tests/bondaracademysite',
+      testMatch: 'likesCounter.spec.ts',
+      use: { ...devices['Desktop Chrome'], storageState: path.resolve(__dirname, 'tests/bondaracademysite/.auth/user.json') },
+      dependencies: ['bondar-academy-article-setup'],
     },
   ],
 });

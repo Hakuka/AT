@@ -8,6 +8,26 @@ Worked in following order: <br>
 -> pw-practice (+bondaracademysite) <br>
 -> uitestingplayground
 
+# Structure
+
+All of them, only if needed 
+
+tests/  
+├── tested-site/  
+│   ├── fixtures/  
+│   │   ├── test-options/  
+│   │   └── ...  
+│   ├── test-data/  
+│   │   └── ...  
+│   ├── page-objects/  
+│   │   ├── navigation/  
+│   │   ├── page-manager/  
+│   │   └── ...  
+|   ├── test  
+│   └── ...  
+├── tested-site/  
+│   └── ...  
+
 # Run
 
 run - run <br>
