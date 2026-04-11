@@ -38,6 +38,12 @@ export default defineConfig({
   },
 
   projects: [
+    //basic project for chromium
+    {
+      name: 'chromium',
+      use: { browserName: 'chromium' },
+    },
+
     //project for pw-practice
     {
       name: 'pw-practice',
@@ -62,6 +68,8 @@ export default defineConfig({
       dependencies: ['bondar-academy-site-setup'],
       teardown: 'bondar-academy-article-clean-up',
     },
+
+    // project which on bondar academy site clear the data after test
     {
       name: 'bondar-academy-article-clean-up',
       testDir: './tests/bondaracademysite',
@@ -89,7 +97,7 @@ export default defineConfig({
       dependencies: ['bondar-academy-site-setup'],
     },
 
-    // project for bondaracademy site for like - to test  dependency chain
+    // project for bondaracademy site for like functionality - to test dependency chain
     {
       name: 'bondar-academy-like-counter',
       testDir: './tests/bondaracademysite',
