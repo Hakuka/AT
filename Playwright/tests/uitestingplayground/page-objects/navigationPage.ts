@@ -9,6 +9,7 @@ export class NavigationPage extends HelperBase {
   readonly loadDelayMenuItem: Locator;
   readonly clientSideDelayMenuItem: Locator;
   readonly clickMenuItem: Locator;
+  readonly textInputMenuItem: Locator;
   readonly scrollbarsMenuItem: Locator;
   readonly dynamicTableMenuItem: Locator;
   readonly verifyTextMenuItem: Locator;
@@ -36,6 +37,7 @@ export class NavigationPage extends HelperBase {
     this.loadDelayMenuItem = page.getByRole('link', { name: 'Load Delay' });
     this.clientSideDelayMenuItem = page.getByRole('link', { name: 'Client Side Delay' });
     this.clickMenuItem = page.getByRole('link', { name: 'Click' });
+    this.textInputMenuItem = page.getByRole('link', { name: 'Text Input' });
     this.scrollbarsMenuItem = page.getByRole('link', { name: 'Scrollbars' });
     this.dynamicTableMenuItem = page.getByRole('link', { name: 'Dynamic Table' });
     this.verifyTextMenuItem = page.getByRole('link', { name: 'Verify Text' });
@@ -81,6 +83,10 @@ export class NavigationPage extends HelperBase {
 
   async clickPage() {
     await this.clickMenuItem.click();
+  }
+
+  async textInputPage() {
+    await this.textInputMenuItem.click();
   }
 
   async scrollbarsPage() {
@@ -130,18 +136,23 @@ export class NavigationPage extends HelperBase {
   async fileUploadPage() {
     await this.fileUploadMenuItem.click();
   }
+
   async animatedButtonPage() {
     await this.animatedButtonMenuItem.click();
   }
+
   async disabledInputPage() {
     await this.disabledInputMenuItem.click();
   }
+
   async autoWaitPage() {
     await this.autoWaitMenuItem.click();
   }
+
   async framesPage() {
     await this.framesMenuItem.click();
   }
+
   async geoLocationPage() {
     await this.geoLocationMenuItem.click();
   }
