@@ -5,8 +5,10 @@ import { DynamicIdPage } from '../page-objects/dynamicIdPage';
 import { NavigationPage } from '../page-objects/navigationPage';
 import { Click } from './clickPage';
 import { ClientSideDelay } from './clientSideDelayPage';
+import { DynamicTable } from './dynamicTablePage';
 import { HiddenLayers } from './hiddenLayersPage';
 import { LoadDelay } from './loadDelayPage';
+import { Scrollbars } from './scrollbarsPage';
 import { TextInput } from './textInputPage';
 
 export class PageManager {
@@ -20,6 +22,8 @@ export class PageManager {
   private readonly clientSideDelay: ClientSideDelay;
   private readonly click: Click;
   private readonly textInput: TextInput;
+  private readonly scrollbars: Scrollbars;
+  private readonly dynamicTable: DynamicTable;
 
   constructor(page: Page) {
     this.page = page;
@@ -32,6 +36,8 @@ export class PageManager {
     this.clientSideDelay = new ClientSideDelay(this.page);
     this.click = new Click(this.page);
     this.textInput = new TextInput(this.page);
+    this.scrollbars = new Scrollbars(this.page);
+    this.dynamicTable = new DynamicTable(this.page);
   }
   navigateTo() {
     return this.navigationPage;
@@ -67,5 +73,13 @@ export class PageManager {
 
   onTextInputPage() {
     return this.textInput;
+  }
+
+  onScrollbarsPage() {
+    return this.scrollbars;
+  }
+
+  onDynamicTable() {
+    return this.dynamicTable;
   }
 }
