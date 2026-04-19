@@ -28,7 +28,7 @@ test.describe('Main view', () => {
     await dropDownMenu.click();
     for (const color in colors) {
       await optionList.filter({ hasText: color }).click();
-      await expect(page.locator('nb-layout-header')).toHaveCSS('background-color', colors[color]);
+      await expect(page.locator('nb-layout-header')).toHaveCSS('background-color', colors[color as keyof typeof colors]);
       if (color != 'Corporate') await dropDownMenu.click();
     }
   });
@@ -49,6 +49,10 @@ test.describe('Main view', () => {
     await tempBox.scrollIntoViewIfNeeded();
 
     const box = await tempBox.boundingBox();
+    if (!box) {
+      throw new Error('box is null');
+    }
+
     const x = box.x + box.width / 2;
     const y = box.y + box.height / 2;
     await page.mouse.move(x, y);
@@ -104,9 +108,9 @@ test.describe('Smart Table page', () => {
   });
 
   test('Browser message ', async ({ page }) => {
-    page.on('dialog', (dialog) => {
+    page.on('dialog', async (dialog) => {
       expect(dialog.message()).toEqual('Are you sure you want to delete?');
-      dialog.accept();
+      await dialog.accept();
     });
 
     await page.getByRole('table').locator('tr', { hasText: 'mdo@gmail.com' }).locator('.nb-trash').click();
@@ -215,11 +219,11 @@ test.describe('Datepicker page', () => {
     const expectedYear = date.getFullYear();
     const expectedDate = `${expectedMonthShort} ${expectedDay}, ${expectedYear}`;
 
-    let calendarMonthAndYear = await page.locator('nb-calendar-view-mode').textContent();
+    let calendarMonthAndYear = (await page.locator('nb-calendar-view-mode').textContent()) ?? '';
     const expectedMonthAndYear = ` ${expectedMonthLong} ${expectedYear} `;
     while (!calendarMonthAndYear.includes(expectedMonthAndYear)) {
       await page.locator('nb-calendar-pageable-navigation [data-name="chevron-right"]').click();
-      calendarMonthAndYear = await page.locator('nb-calendar-view-mode').textContent();
+      calendarMonthAndYear = (await page.locator('nb-calendar-view-mode').textContent()) ?? '';
     }
 
     await page.locator('nb-calendar-day-cell:not(.bounding-month)').getByText(expectedDay, { exact: true }).click();

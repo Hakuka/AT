@@ -12,8 +12,8 @@ test('Class Attribute', async ({ page }) => {
   await pm.navigateTo().classAttributePage();
   await pm.onClassAttributePage().pressPrimaryButton();
 
-  page.on('dialog', (dialog) => {
+  page.on('dialog', async (dialog) => {
     expect(dialog.message()).toEqual('Primary button pressed');
-    dialog.accept();
+    await dialog.accept();
   });
 });

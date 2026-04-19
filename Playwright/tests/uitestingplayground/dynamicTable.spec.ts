@@ -8,7 +8,7 @@ test.beforeEach(async ({ page, uiTestingPlaygroundURL }) => {
 
 test('Dynamic Table', async ({ page }) => {
   const pm = new PageManager(page);
-  pm.navigateTo().dynamicTablePage();
+  await pm.navigateTo().dynamicTablePage();
   const checkForColumn = 'CPU';
   const checkForRow = 'Chrome';
 
