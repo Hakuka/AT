@@ -10,6 +10,7 @@ import { HiddenLayers } from './hiddenLayersPage';
 import { LoadDelay } from './loadDelayPage';
 import { Scrollbars } from './scrollbarsPage';
 import { TextInput } from './textInputPage';
+import { VerifyText } from './verifyTextPage';
 
 export class PageManager {
   private readonly page: Page;
@@ -24,6 +25,7 @@ export class PageManager {
   private readonly textInput: TextInput;
   private readonly scrollbars: Scrollbars;
   private readonly dynamicTable: DynamicTable;
+  private readonly verifyText: VerifyText;
 
   constructor(page: Page) {
     this.page = page;
@@ -38,6 +40,7 @@ export class PageManager {
     this.textInput = new TextInput(this.page);
     this.scrollbars = new Scrollbars(this.page);
     this.dynamicTable = new DynamicTable(this.page);
+    this.verifyText = new VerifyText(this.page);
   }
   navigateTo() {
     return this.navigationPage;
@@ -81,5 +84,9 @@ export class PageManager {
 
   onDynamicTable() {
     return this.dynamicTable;
+  }
+
+  onVerifyText() {
+    return this.verifyText;
   }
 }
