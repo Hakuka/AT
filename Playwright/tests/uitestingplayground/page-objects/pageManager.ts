@@ -8,9 +8,14 @@ import { ClientSideDelay } from './clientSideDelayPage';
 import { DynamicTable } from './dynamicTablePage';
 import { HiddenLayers } from './hiddenLayersPage';
 import { LoadDelay } from './loadDelayPage';
+import { MouseOver } from './mouseOverPage';
+import { NonBreakingSpace } from './nonBreakingSpace';
+import { ProgressBar } from './progressBarPage';
+import { SampleApp } from './sampleAppPage';
 import { Scrollbars } from './scrollbarsPage';
 import { TextInput } from './textInputPage';
 import { VerifyText } from './verifyTextPage';
+import { Visibility } from './visibilityPage';
 
 export class PageManager {
   private readonly page: Page;
@@ -26,6 +31,11 @@ export class PageManager {
   private readonly scrollbars: Scrollbars;
   private readonly dynamicTable: DynamicTable;
   private readonly verifyText: VerifyText;
+  private readonly progressBar: ProgressBar;
+  private readonly visibility: Visibility;
+  private readonly sampleApp: SampleApp;
+  private readonly mouseOver: MouseOver;
+  private readonly nonBreakingSpace: NonBreakingSpace;
 
   constructor(page: Page) {
     this.page = page;
@@ -41,7 +51,13 @@ export class PageManager {
     this.scrollbars = new Scrollbars(this.page);
     this.dynamicTable = new DynamicTable(this.page);
     this.verifyText = new VerifyText(this.page);
+    this.progressBar = new ProgressBar(this.page);
+    this.visibility = new Visibility(this.page);
+    this.sampleApp = new SampleApp(this.page);
+    this.mouseOver = new MouseOver(this.page);
+    this.nonBreakingSpace = new NonBreakingSpace(this.page);
   }
+
   navigateTo() {
     return this.navigationPage;
   }
@@ -88,5 +104,25 @@ export class PageManager {
 
   onVerifyText() {
     return this.verifyText;
+  }
+
+  onProgressBar() {
+    return this.progressBar;
+  }
+
+  onVisibility() {
+    return this.visibility;
+  }
+
+  onSampleApp() {
+    return this.sampleApp;
+  }
+
+  onMouseOver() {
+    return this.mouseOver;
+  }
+
+  onNonBreakingSpace() {
+    return this.nonBreakingSpace;
   }
 }
