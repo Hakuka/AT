@@ -3,6 +3,7 @@ import { AjaxDataPage } from '../page-objects/ajaxDataPage';
 import { ClassAttribute } from '../page-objects/classAttributePage';
 import { DynamicIdPage } from '../page-objects/dynamicIdPage';
 import { NavigationPage } from '../page-objects/navigationPage';
+import { AlertsPage } from './alertsPage';
 import { Click } from './clickPage';
 import { ClientSideDelay } from './clientSideDelayPage';
 import { DynamicTable } from './dynamicTablePage';
@@ -10,6 +11,7 @@ import { HiddenLayers } from './hiddenLayersPage';
 import { LoadDelay } from './loadDelayPage';
 import { MouseOver } from './mouseOverPage';
 import { NonBreakingSpace } from './nonBreakingSpace';
+import { OverlappedElement } from './overlappedElementPage';
 import { ProgressBar } from './progressBarPage';
 import { SampleApp } from './sampleAppPage';
 import { Scrollbars } from './scrollbarsPage';
@@ -36,6 +38,8 @@ export class PageManager {
   private readonly sampleApp: SampleApp;
   private readonly mouseOver: MouseOver;
   private readonly nonBreakingSpace: NonBreakingSpace;
+  private readonly overlappedElement: OverlappedElement;
+  private readonly alertsPage: AlertsPage;
 
   constructor(page: Page) {
     this.page = page;
@@ -56,6 +60,8 @@ export class PageManager {
     this.sampleApp = new SampleApp(this.page);
     this.mouseOver = new MouseOver(this.page);
     this.nonBreakingSpace = new NonBreakingSpace(this.page);
+    this.overlappedElement = new OverlappedElement(this.page);
+    this.alertsPage = new AlertsPage(this.page);
   }
 
   navigateTo() {
@@ -124,5 +130,13 @@ export class PageManager {
 
   onNonBreakingSpace() {
     return this.nonBreakingSpace;
+  }
+
+  onOverlappedElement() {
+    return this.overlappedElement;
+  }
+
+  onAlertsPage() {
+    return this.alertsPage;
   }
 }

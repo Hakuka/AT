@@ -5,28 +5,8 @@ npm install
 # Note
 
 Worked on it in following order: <br>
--> pw-practice (+bondaracademysite) <br>
--> uitestingplayground
-
-# Structure
-
-All of them, only if needed 
-
-tests/  
-├── tested-site/  
-│   ├── fixtures/  
-│   │   ├── test-options/  
-│   │   └── ...  
-│   ├── test-data/  
-│   │   └── ...  
-│   ├── page-objects/  
-│   │   ├── navigation/  
-│   │   ├── page-manager/  
-│   │   └── ...  
-|   ├── test  
-│   └── ...  
-├── tested-site/  
-│   └── ...  
+-> pw-practice (+bondaracademysite) as a reminder. <br>
+-> uitestingplayground - it seems that POM needs to be implemented with moderation. <br>
 
 # Run
 
@@ -39,5 +19,5 @@ npm run test-all-watch <br>
 npm run test-ui <br>
 
 npm run test-pwpractice-run <br>
-npm run test-uitestingplayground-run <br>
 npm run test-bondaracademysite-run <br>
+npm run test-uitestingplayground-run <br>
