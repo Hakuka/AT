@@ -7,6 +7,7 @@ import { AlertsPage } from './alertsPage';
 import { Click } from './clickPage';
 import { ClientSideDelay } from './clientSideDelayPage';
 import { DynamicTable } from './dynamicTablePage';
+import { FileUploadPage } from './fileUploadPage';
 import { HiddenLayers } from './hiddenLayersPage';
 import { LoadDelay } from './loadDelayPage';
 import { MouseOver } from './mouseOverPage';
@@ -40,6 +41,7 @@ export class PageManager {
   private readonly nonBreakingSpace: NonBreakingSpace;
   private readonly overlappedElement: OverlappedElement;
   private readonly alertsPage: AlertsPage;
+  private readonly fileUploadPage: FileUploadPage;
 
   constructor(page: Page) {
     this.page = page;
@@ -62,6 +64,7 @@ export class PageManager {
     this.nonBreakingSpace = new NonBreakingSpace(this.page);
     this.overlappedElement = new OverlappedElement(this.page);
     this.alertsPage = new AlertsPage(this.page);
+    this.fileUploadPage = new FileUploadPage(this.page);
   }
 
   navigateTo() {
@@ -138,5 +141,9 @@ export class PageManager {
 
   onAlertsPage() {
     return this.alertsPage;
+  }
+
+  onFileUploadPage() {
+    return this.fileUploadPage;
   }
 }
