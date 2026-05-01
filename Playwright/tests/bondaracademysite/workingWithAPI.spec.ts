@@ -33,6 +33,7 @@ test('Add article', async ({ page }) => {
   await page.unrouteAll({ behavior: 'ignoreErrors' });
 });
 
+//use from cli, dependecy chain, starting from gui will not work
 test('Delete article', async ({ page, request, bondarApiUrl }) => {
   const articleResponse = await request.post(`${bondarApiUrl}/api/articles`, {
     data: {
@@ -50,6 +51,7 @@ test('Delete article', async ({ page, request, bondarApiUrl }) => {
   await expect(page.locator('app-article-list h1').first()).not.toContainText('test article');
 });
 
+//use from cli, dependecy chain, starting from gui will not work
 test('create, delete article', async ({ page, request, bondarApiUrl }) => {
   await page.getByText('New Article').click();
   await page.getByRole('textbox', { name: 'Article Title' }).fill('Playwright course');
