@@ -5,12 +5,11 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint . --ext .ts",
-    "test-all-run": "playwright test",
-    "test-all-watch": "playwright test --headed",
-    "test-ui": "playwright test --ui",
-    "test-pwpractice-run": "playwright test --project=pw-practice",
-    "test-uitestingplayground-run": "playwright test --project=uitestingplayground",
-    "test-bondaracademysite-run": "playwright test --project=bondaracademysite"
+    "pw-ui": "playwright test -c playwright.config.ts --ui",
+    "pwpractice-run": "playwright test -c configs/pw-practice.config.ts",
+    "uitpg-run": "playwright test -c configs/uitestingplayground.config.ts",
+    "swag-run": "playwright test -c configs/swaglabs.config.ts",
+    "bondar-run": "playwright test -c configs/bondaracademy.config.ts --project=bondaracademysite"
   },
   "keywords": [],
   "author": "",

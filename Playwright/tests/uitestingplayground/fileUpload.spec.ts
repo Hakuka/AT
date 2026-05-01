@@ -1,9 +1,8 @@
-import { expect } from '@playwright/test';
-import { test } from './fixtures/test-options';
+import { expect, test } from '@playwright/test';
 import { PageManager } from './page-objects/pageManager';
 
-test.beforeEach(async ({ page, uiTestingPlaygroundURL }) => {
-  await page.goto(`${uiTestingPlaygroundURL}`);
+test.beforeEach(async ({ page, baseURL }) => {
+  await page.goto(`${baseURL}`);
 });
 
 test('File upload', async ({ page }) => {

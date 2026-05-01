@@ -1,8 +1,8 @@
 import { test } from './fixtures/test-options';
 import { PageManager } from './page-objects/pageManager';
 
-test.beforeEach(async ({ page, swaglabsURL }) => {
-  await page.goto(`${swaglabsURL}`);
+test.beforeEach(async ({ page, baseURL }) => {
+  await page.goto(`${baseURL}`);
 });
 
 test('Click', async ({ page }) => {

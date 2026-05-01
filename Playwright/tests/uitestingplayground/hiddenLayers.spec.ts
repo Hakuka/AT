@@ -1,8 +1,8 @@
-import { test } from './fixtures/test-options';
+import { test } from '@playwright/test';
 import { PageManager } from './page-objects/pageManager';
 
-test.beforeEach(async ({ page, uiTestingPlaygroundURL }) => {
-  await page.goto(`${uiTestingPlaygroundURL}`);
+test.beforeEach(async ({ page, baseURL }) => {
+  await page.goto(`${baseURL}`);
 });
 
 test('Hidden Layers', async ({ page }) => {

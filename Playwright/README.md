@@ -1,24 +1,32 @@
-# Install
-
-npm install
-
 # Note
 
 Worked on it in following order:  
--> pw-practice (+bondaracademysite) as a reminder.  
--> uitestingplayground - testing useless POM implementation.  
--> swag-labs (saucedemo) - starting proper projects.  
+- pw-practice (+bondaracademysite) as a reminder.  
+- uitestingplayground - testing useless POM implementation.  
+- swag-labs (saucedemo) - starting proper projects.  
 
-# Run
+Multi-config playwright setup is used:  
+- each application has its own config in `configs/`  
+- configs are executes using `-c`  
+- global `playwright.config.ts` is used only for VSC UI (test discovery/  run button)  
 
-run - run <br>
-watch - run with gui <br>
-ui - open gui<br>
+# Install & run
 
-npm run test-all-run <br>
-npm run test-all-watch <br>
-npm run test-ui <br>
+```
+npm install
+```
 
-npm run test-pwpractice-run <br>
-npm run test-bondaracademysite-run <br>
-npm run test-uitestingplayground-run <br>
+## VS Code (GUI)
+
+```
+npm run pw-ui
+```
+
+## Run tests per project
+
+```
+npm run pwpractice-run
+npm run uitpg-run
+npm run swag-run
+npm run bondar-run
+```

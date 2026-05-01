@@ -9,7 +9,7 @@ test.beforeEach(async ({ page, bondarPageUrl }) => {
     });
   });
 
-  await page.goto(bondarPageUrl);
+  await page.goto('/');
 });
 
 test('Add article', async ({ page }) => {

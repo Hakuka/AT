@@ -1,4 +1,5 @@
 import { test as base } from '@playwright/test';
+import { urls } from '../../../configs/urls';
 
 export type TestOptions = {
   bondarApiUrl: string;
@@ -6,6 +7,6 @@ export type TestOptions = {
 };
 
 export const test = base.extend<TestOptions>({
-  bondarApiUrl: ['', { option: true }],
-  bondarPageUrl: ['', { option: true }],
+  bondarApiUrl: [urls.bondarApi, { option: true }],
+  bondarPageUrl: [urls.bondar, { option: true }],
 });

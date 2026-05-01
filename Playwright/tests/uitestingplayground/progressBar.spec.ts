@@ -1,8 +1,8 @@
-import { test } from './fixtures/test-options';
+import { test } from '@playwright/test';
 import { PageManager } from './page-objects/pageManager';
 
-test.beforeEach(async ({ page, uiTestingPlaygroundURL }) => {
-  await page.goto(`${uiTestingPlaygroundURL}`);
+test.beforeEach(async ({ page, baseURL }) => {
+  await page.goto(`${baseURL}`);
 });
 
 test('Progress bar', async ({ page }) => {
@@ -18,7 +18,6 @@ test('Progress bar', async ({ page }) => {
       await pm.onProgressBar().stopButton.click();
       break;
     }
-    console.log(progressValue);
     //let it refresh, to be perfect remove it but can be flaky/spammy
     await page.waitForTimeout(100);
   }

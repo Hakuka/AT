@@ -1,9 +1,9 @@
 import { test as base } from '@playwright/test';
 
 export type TestOptions = {
-  uiTestingPlaygroundURL: string;
+  baseURL: string;
 };
 
 export const test = base.extend<TestOptions>({
-  uiTestingPlaygroundURL: ['', { option: true }],
+  baseURL: ['', { option: true }],
 });
