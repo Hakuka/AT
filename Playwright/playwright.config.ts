@@ -32,6 +32,7 @@ export default defineConfig({
     bondarApiUrl: 'https://conduit-api.bondaracademy.com',
     bondarPageUrl: 'https://conduit.bondaracademy.com',
     uiTestingPlaygroundURL: 'http://www.uitestingplayground.com',
+    swaglabsURL: 'https://www.saucedemo.com/',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -55,6 +56,13 @@ export default defineConfig({
     {
       name: 'uitestingplayground',
       testDir: './tests/uitestingplayground',
+      use: { ...devices['Desktop Chrome'] },
+    },
+
+    //project for swaglabs -saucedemo
+    {
+      name: 'swaglabs',
+      testDir: './tests/swag-labs',
       use: { ...devices['Desktop Chrome'] },
     },
 

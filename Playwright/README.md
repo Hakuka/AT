@@ -4,9 +4,10 @@ npm install
 
 # Note
 
-Worked on it in following order: <br>
--> pw-practice (+bondaracademysite) as a reminder. <br>
--> uitestingplayground - it seems that POM needs to be implemented with moderation. <br>
+Worked on it in following order:  
+-> pw-practice (+bondaracademysite) as a reminder.  
+-> uitestingplayground - testing useless POM implementation.  
+-> swag-labs (saucedemo) - starting proper projects.  
 
 # Run
 
