@@ -48,7 +48,7 @@ test.describe('Login test', () => {
 
   for (const c of negativeCases) {
     test(`Login test (${c.name})`, async ({ page }) => {
-      await pm.onLoginPage().loginUsingUsernameAndPassword(c.user.username, c.user.password);
+      await pm.onLoginPage().loginUsingUser(c.user);
 
       await expect(page.getByText(c.expectedMessage)).toBeVisible();
       await expect(page).toHaveURL('/');
@@ -56,7 +56,7 @@ test.describe('Login test', () => {
   }
 
   test('Login test (standard user)', async ({ page }) => {
-    await pm.onLoginPage().loginUsingUsernameAndPassword(users.standardUser.username, users.standardUser.password);
+    await pm.onLoginPage().loginUsingUser(users.standardUser);
     await expect(page.getByText('Products')).toBeVisible();
     await expect(page).toHaveURL('/inventory.html');
     await pm.onSidebar().logout();

@@ -5,9 +5,9 @@ export class LoginPage extends HelperBase {
   readonly passwordField = this.page.getByRole('textbox', { name: 'Password' });
   readonly loginButton = this.page.getByRole('button', { name: 'Login' });
 
-  async loginUsingUsernameAndPassword(username: string, password: string) {
-    await this.usernameField.fill(username);
-    await this.passwordField.fill(password);
+  async loginUsingUser(user: { username: string; password: string }) {
+    await this.usernameField.fill(user.username);
+    await this.passwordField.fill(user.password);
     await this.loginButton.click();
   }
 }

@@ -10,11 +10,13 @@ Multi-config playwright setup is used:
 - configs are executes using `-c`  
 - global `playwright.config.ts` is used only for VSC UI (test discovery/  run button)  
 
-# Install & run
+# Install & setup
 
 ```
 npm install
 ```
+- Copy .env.example to .env
+- Fill required values in `.env`
 
 ## VS Code (GUI)
 
