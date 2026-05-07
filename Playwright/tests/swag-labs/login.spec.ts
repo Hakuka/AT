@@ -59,6 +59,6 @@ test.describe('Login test', () => {
     await pm.onLoginPage().loginUsingUser(users.standardUser);
     await expect(page.getByText('Products')).toBeVisible();
     await expect(page).toHaveURL('/inventory.html');
-    await pm.onSidebar().logout();
+    await pm.onGlobalMenu().logout();
   });
 });

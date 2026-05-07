@@ -1,27 +1,27 @@
 import { Page } from '@playwright/test';
-import { inventoryPage } from './inventoryPage';
+import { GlobalMenu } from './globalMenu';
+import { InventoryPage } from './inventoryPage';
 import { LoginPage } from './loginPage';
-import { Sidebar } from './sidebar';
 
 export class PageManager {
   private readonly page: Page;
   private readonly loginPage: LoginPage;
-  private readonly sidebar: Sidebar;
-  private readonly inventoryPage: inventoryPage;
+  private readonly globalMenu: GlobalMenu;
+  private readonly inventoryPage: InventoryPage;
 
   constructor(page: Page) {
     this.page = page;
     this.loginPage = new LoginPage(this.page);
-    this.sidebar = new Sidebar(this.page);
-    this.inventoryPage = new inventoryPage(this.page);
+    this.globalMenu = new GlobalMenu(this.page);
+    this.inventoryPage = new InventoryPage(this.page);
   }
 
   onLoginPage() {
     return this.loginPage;
   }
 
-  onSidebar() {
-    return this.sidebar;
+  onGlobalMenu() {
+    return this.globalMenu;
   }
 
   onInventoryPage() {

@@ -1,6 +1,6 @@
 import { Page } from '@playwright/test';
 
-export class Sidebar {
+export class GlobalMenu {
   constructor(private readonly page: Page) {}
 
   get menuButton() {
@@ -9,6 +9,10 @@ export class Sidebar {
 
   get logoutLink() {
     return this.page.locator('#logout_sidebar_link');
+  }
+
+  get cartLink() {
+    return this.page.locator('[data-test="shopping-cart-link"]');
   }
 
   async logout() {

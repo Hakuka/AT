@@ -24,5 +24,12 @@ test('Purchase - happy path', async ({ page, baseURL }) => {
   await test.step('Add items to cart', async () => {
     await pm.onInventoryPage().addProductToCart('Sauce Labs Backpack').click();
     await pm.onInventoryPage().addProductToCart('Sauce Labs Fleece Jacket').click();
+    await expect(pm.onInventoryPage().shoppingCartIcon).toHaveText('2');
+  });
+
+  await test.step('Go to the cart', async () => {
+    await pm.onGlobalMenu().cartLink.click();
+    await expect(page.getByText('Your Cart')).toBeVisible();
+    await expect(pm.onInventoryPage().shoppingCartIcon).toHaveText('2');
   });
 });
