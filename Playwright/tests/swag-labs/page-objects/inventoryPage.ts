@@ -1,15 +1,12 @@
-import { Page } from '@playwright/test';
+import { HelperBase } from './helperBase';
 
-export class InventoryPage {
-  constructor(private readonly page: Page) {}
-
-  get shoppingCartIcon() {
-    return this.page.locator('[data-test="shopping-cart-link"]');
-  }
+export class InventoryPage extends HelperBase {
+  readonly inventoryItems = this.page.locator('[data-test="inventory-item"]');
+  readonly inventoryItemName = this.page.locator('[data-test="inventory-item-name"]');
 
   addProductToCart(productName: string) {
-    const product = this.page.locator('[data-test="inventory-item"]').filter({
-      has: this.page.locator('[data-test="inventory-item-name"]').filter({
+    const product = this.inventoryItems.filter({
+      has: this.inventoryItemName.filter({
         hasText: productName,
       }),
     });

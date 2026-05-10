@@ -1,22 +1,12 @@
-import { Page } from '@playwright/test';
+import { HelperBase } from './helperBase';
 
-export class GlobalMenu {
-  constructor(private readonly page: Page) {}
-
-  get menuButton() {
-    return this.page.locator('#react-burger-menu-btn');
-  }
-
-  get logoutLink() {
-    return this.page.locator('#logout_sidebar_link');
-  }
-
-  get cartLink() {
-    return this.page.locator('[data-test="shopping-cart-link"]');
-  }
+export class GlobalMenu extends HelperBase {
+  readonly menuButton = this.page.locator('#react-burger-menu-btn');
+  readonly logoutButton = this.page.locator('#logout_sidebar_link');
+  readonly shoppingCartIcon = this.page.locator('[data-test="shopping-cart-link"]');
 
   async logout() {
     await this.menuButton.click();
-    await this.logoutLink.click();
+    await this.logoutButton.click();
   }
 }
