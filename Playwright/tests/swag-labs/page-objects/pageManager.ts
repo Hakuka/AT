@@ -1,5 +1,6 @@
 import { Page } from '@playwright/test';
 import { CartPage } from './cartPage';
+import { CheckoutYourInfoPage } from './checkoutYourInfoPage';
 import { GlobalMenu } from './globalMenu';
 import { InventoryPage } from './inventoryPage';
 import { LoginPage } from './loginPage';
@@ -10,6 +11,7 @@ export class PageManager {
   private readonly globalMenu: GlobalMenu;
   private readonly inventoryPage: InventoryPage;
   private readonly cartPage: CartPage;
+  private readonly checkoutYourInfoPage: CheckoutYourInfoPage;
 
   constructor(page: Page) {
     this.page = page;
@@ -17,6 +19,7 @@ export class PageManager {
     this.globalMenu = new GlobalMenu(this.page);
     this.inventoryPage = new InventoryPage(this.page);
     this.cartPage = new CartPage(this.page);
+    this.checkoutYourInfoPage = new CheckoutYourInfoPage(this.page);
   }
 
   onLoginPage() {
@@ -33,5 +36,8 @@ export class PageManager {
 
   onCartPage() {
     return this.cartPage;
+  }
+  onCheckoutYourInfoPage() {
+    return this.checkoutYourInfoPage;
   }
 }

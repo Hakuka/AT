@@ -1,3 +1,4 @@
+import { faker } from '@faker-js/faker';
 import { expect } from '@playwright/test';
 import { test } from './fixtures/test-options';
 import { PageManager } from './page-objects/pageManager';
@@ -5,13 +6,16 @@ import { products } from './test-data/products';
 import { users } from './test-data/users';
 
 let pm: PageManager;
-const productsToBuy = [products.item1, products.item2];
-
-test.beforeEach(async ({ page }) => {
-  pm = new PageManager(page);
-});
 
 test('Purchase - happy path', async ({ page, baseURL }) => {
+  pm = new PageManager(page);
+  const productsToBuy = [products.item1, products.item2];
+  const checkoutData = {
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    zipCode: faker.location.zipCode(),
+  };
+
   await test.step('Navigate to login page', async () => {
     await page.goto(`${baseURL}`);
   });
@@ -59,13 +63,24 @@ test('Purchase - happy path', async ({ page, baseURL }) => {
     await pm.onCartPage().checkoutButton.click();
     await expect(page.getByText('Checkout: Your Information')).toBeVisible();
     await expect(pm.onGlobalMenu().shoppingCartIcon).toHaveText(`${productsToBuy.length}`);
+    await expect(pm.onCheckoutYourInfoPage().firstNameField).toBeVisible();
+    await expect(pm.onCheckoutYourInfoPage().lastNameField).toBeVisible();
+    await expect(pm.onCheckoutYourInfoPage().zipPostalCodeField).toBeVisible();
   });
 
   await test.step('Fill checkout information', async () => {
-    //TODO: use random values
+    await pm.onCheckoutYourInfoPage().fillCheckoutInformation(checkoutData);
+    await expect(pm.onCheckoutYourInfoPage().firstNameField).toHaveValue(checkoutData.firstName);
+    await expect(pm.onCheckoutYourInfoPage().lastNameField).toHaveValue(checkoutData.lastName);
+    await expect(pm.onCheckoutYourInfoPage().zipPostalCodeField).toHaveValue(checkoutData.zipCode);
   });
 
   await test.step('Go to the checkout overview', async () => {
+    await pm.onCheckoutYourInfoPage().continueButton.click();
+    //TODO: verify correct page.
+  });
+
+  await test.step('Verify the checkout', async () => {
     //TODO: verify qty, prices, price total (item total)
   });
 
