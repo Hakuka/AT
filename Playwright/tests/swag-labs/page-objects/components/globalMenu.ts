@@ -1,4 +1,4 @@
-import { HelperBase } from './helperBase';
+import { HelperBase } from '../helperBase';
 
 export class GlobalMenu extends HelperBase {
   readonly menuButton = this.page.locator('#react-burger-menu-btn');
