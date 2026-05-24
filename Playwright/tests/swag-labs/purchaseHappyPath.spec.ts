@@ -24,7 +24,7 @@ test('Purchase - happy path', async ({ page, baseURL }) => {
     await pm.onLoginPage().loginUsingUser(users.standardUser);
 
     await expect(page.getByText('Products')).toBeVisible();
-    await expect(page).toHaveURL('/inventory.html');
+    await expect(page).toHaveURL(/inventory/);
   });
 
   await test.step('Add items to cart', async () => {
@@ -36,6 +36,7 @@ test('Purchase - happy path', async ({ page, baseURL }) => {
 
   await test.step('Go to the cart', async () => {
     await pm.onGlobalMenu().shoppingCartIcon.click();
+    await expect(page).toHaveURL(/cart/);
     await expect(page.getByText('Your Cart')).toBeVisible();
     await expect(pm.onGlobalMenu().shoppingCartIcon).toHaveText(`${productsToBuy.length}`);
   });
@@ -51,6 +52,7 @@ test('Purchase - happy path', async ({ page, baseURL }) => {
 
   await test.step('Go to the checkout', async () => {
     await pm.onCartPage().checkoutButton.click();
+    await expect(page).toHaveURL(/checkout-step-one/);
     await expect(page.getByText('Checkout: Your Information')).toBeVisible();
     await expect(pm.onGlobalMenu().shoppingCartIcon).toHaveText(`${productsToBuy.length}`);
     await expect(pm.onCheckoutYourInfoPage().firstNameField).toBeVisible();
@@ -67,6 +69,7 @@ test('Purchase - happy path', async ({ page, baseURL }) => {
 
   await test.step('Go to the checkout overview', async () => {
     await pm.onCheckoutYourInfoPage().continueButton.click();
+    await expect(page).toHaveURL(/checkout-step-two/);
     await expect(page.getByText('Checkout: Overview')).toBeVisible();
     await expect(page.getByText('Payment Information')).toBeVisible();
     await expect(page.getByText('Shipping Information')).toBeVisible();
@@ -74,7 +77,6 @@ test('Purchase - happy path', async ({ page, baseURL }) => {
   });
 
   await test.step('Verify the checkout', async () => {
-    //TODO:  price total (item total)
     for (const product of productsToBuy) {
       const cartItem = pm.onCartPage().cartItemsSection.itemByName(product.name);
       await expect(pm.onCartPage().cartItemsSection.itemName(product.name)).toHaveText(product.name);
@@ -85,5 +87,13 @@ test('Purchase - happy path', async ({ page, baseURL }) => {
 
   await test.step('Finish the order and go back to home page', async () => {
     //TODO: verify at the end that cart is empty.
+    await pm.onCheckoutOverviewPage().finishButton.click();
+    await expect(page).toHaveURL(/checkout-complete/);
+    await expect(pm.onCheckoutCompletePage().pageTitle).toHaveText('Checkout: Complete!');
+    await expect(pm.onCheckoutCompletePage().completeHeader).toHaveText('Thank you for your order!');
+    await expect(pm.onCheckoutCompletePage().backHomeButton).toBeVisible;
+    await expect(pm.onGlobalMenu().shoppingCartIcon).toHaveText('');
+    await pm.onCheckoutCompletePage().backHomeButton.click();
+    await expect(page).toHaveURL(/inventory/);
   });
 });
